@@ -1,0 +1,164 @@
+/* Background canvas */
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at center, #0a0f1c, #000);
+}
+
+/* Optional tech grid overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(#00eaff22 1px, transparent 1px),
+                    linear-gradient(90deg, #00eaff22 1px, transparent 1px);
+  background-size: 50px 50px;
+  z-index: -1;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to   { background-position: 50px 50px; }
+}
+
+/* General Style */
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  color: #00eaff;
+  overflow: hidden;
+}
+
+/* Container Layout */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 80vh;
+  padding: 20px;
+}
+
+/* Panels - holographic glass effect */
+.panel {
+  background: rgba(0, 20, 40, 0.3);
+  border: 1px solid #00eaff55;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 20px #00eaff55, inset 0 0 10px #00eaff22;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #00eaff;
+  transition: 0.3s ease-in-out;
+}
+
+.panel:hover {
+  background: rgba(0, 40, 80, 0.4);
+  box-shadow: 0 0 30px #00eaff99, inset 0 0 15px #00eaff33;
+}
+
+/* HUD Core */
+.hud {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 4px solid #00eaff;
+  background: rgba(0, 30, 60, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 0 40px #00eaffaa, inset 0 0 30px #0077aa88;
+  animation: idlePulse 3s infinite;
+  transition: all 0.3s ease-in-out;
+}
+
+.status {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+  color: #ffffffaa;
+}
+
+/* Bottom Dock */
+.dock {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(10, 20, 40, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #00eaff55;
+  box-shadow: 0 -5px 20px #00eaff22;
+}
+
+#mic-btn {
+  background: rgba(0, 234, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 25px #00eaffcc, inset 0 0 10px #0077aa;
+  transition: 0.2s;
+}
+
+#mic-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px #00eaff, inset 0 0 15px #0077aa;
+}
+
+.suggestions {
+  margin-left: 20px;
+  color: #ffffffaa;
+}
+
+.suggestions span {
+  color: #00eaff;
+  margin-right: 10px;
+}
+
+/* Animations */
+@keyframes idlePulse {
+  0%   { box-shadow: 0 0 10px #00eaff, inset 0 0 20px #0077aa; }
+  50%  { box-shadow: 0 0 40px #00eaff, inset 0 0 40px #0077aa; }
+  100% { box-shadow: 0 0 10px #00eaff, inset 0 0 20px #0077aa; }
+}
+
+@keyframes listenPulse {
+  0%   { transform: scale(1); box-shadow: 0 0 20px #00ffcc, inset 0 0 30px #00ffaa; }
+  50%  { transform: scale(1.2); box-shadow: 0 0 60px #00ffcc, inset 0 0 50px #00ffaa; }
+  100% { transform: scale(1); box-shadow: 0 0 20px #00ffcc, inset 0 0 30px #00ffaa; }
+}
+
+@keyframes speakPulse {
+  0%   { transform: scale(1); box-shadow: 0 0 20px #ff00ff, inset 0 0 30px #aa00aa; }
+  50%  { transform: scale(1.15); box-shadow: 0 0 60px #ff00ff, inset 0 0 50px #aa00aa; }
+  100% { transform: scale(1); box-shadow: 0 0 20px #ff00ff, inset 0 0 30px #aa00aa; }
+}
+
+.circle.listening {
+  animation: listenPulse 1.5s infinite;
+  border-color: #00ffaa;
+}
+
+.circle.speaking {
+  animation: speakPulse 1.5s infinite;
+  border-color: #ff00ff;
+}

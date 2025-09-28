@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jarvis Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="panel left-panel">
+      <h2>Quick Commands</h2>
+      <ul>
+        <li>Time & Date</li>
+        <li>Open WhatsApp</li>
+        <li>Set Alarm</li>
+        <li>Play Music</li>
+      </ul>
+    </div>
+
+    <!-- Central HUD -->
+    <div class="hud">
+      <div class="circle"></div>
+      <p class="status">Say "Hello Jarvis"</p>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="panel right-panel">
+      <h2>Notifications</h2>
+      <ul id="notifications">
+        <li>No notifications yet</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Dock -->
+  <div class="dock">
+    <button id="mic-btn">🎤</button>
+    <div class="suggestions">
+      Try: <span>"What time is it?"</span>, <span>"Play music"</span>, <span>"Set alarm"</span>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
